@@ -171,7 +171,7 @@ module.exports = function(grunt) {
 
   // The server task always run with the watch task, this is done by
   // aliasing the server task to the relevant set of task to run.
-  grunt.registerTask('server', 'yeoman-server watch');
+  grunt.registerTask('server', 'yeoman-server');
 
   // Reload handlers
   // ---------------
@@ -366,7 +366,8 @@ module.exports = function(grunt) {
       cb(null, port);
     }
 
-    return app
+      var appServer = app.httpServer || app
+    return appServer
         .on('error', function( err ) {
             grunt.log.writeln('got here');
           if ( err.code === 'EADDRINUSE' ) {
